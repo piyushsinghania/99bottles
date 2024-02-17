@@ -4,13 +4,7 @@ class Bottles
   end
 
   def verses(high, low)
-    phrase = verse(high)
-
-    (low..(high - 1)).to_a.reverse.each do |count|
-      phrase = append_phrase(phrase, verse(count))
-    end
-
-    phrase
+    (low..high).to_a.reverse.map { |count| verse(count) }.join("\n")
   end
 
   def song
@@ -46,13 +40,5 @@ class Bottles
         Ran out of range!
       VERSE
     end
-  end
-
-  def append_phrase(phrase, new_phrase)
-    <<~VERSE
-      #{phrase.strip}
-
-      #{new_phrase.strip}
-    VERSE
   end
 end
